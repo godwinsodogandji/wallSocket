@@ -27,9 +27,15 @@ const startDrawing = (e: MouseEvent) => {
 
 // Dessiner
 const draw = (e: MouseEvent) => {
+  const rect = canvasRef.value?.getBoundingClientRect();
+  if (!rect) {
+    return;
+  }
+  console.log(rect);
+
   const currentPoint = {
-    x: e.clientX,
-    y: e.clientY,
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
   };
   // console.log(currentPoint);
   if (!lastPoint.value) {
